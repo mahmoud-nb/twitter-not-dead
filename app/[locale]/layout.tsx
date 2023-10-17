@@ -39,7 +39,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
           <div className="flex h-full max-w-6xl mx-auto py-10 sm:py-0 ">
             <Aside />
-            <main>
+            <main className="flex-1 px-4">
               <Header />
               <div className="p-2">
                 {children}

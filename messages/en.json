@@ -4,6 +4,8 @@
       "Home": "Home",
       "Explore": "Explore",
       "Tweet": "Tweet",
-      "Profil": "Profil"
+      "Profil": "Profil",
+      "Login": "Login",
+      "Logout": "Logout"
     }
   }
