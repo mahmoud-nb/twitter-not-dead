@@ -1,10 +1,11 @@
 import Image from "next/image"
 import clsx from "clsx"
 import { Navbar } from "./Navbar"
+import ThemeToggle from "../theme/ThemeToggle"
 
 export const Aside = () => {
   const mainAsideStyle = {
-    xs: 'flex flex-col gap-4 p-2 bg-white border-t border-blue-50 w-64 fixed top-0 bottom-0 -left-64',
+    xs: 'flex flex-col gap-4 p-2 border-t border-blue-50 w-64 fixed top-0 bottom-0 -left-64',
     sm: 'sm:flex-col sm:justify-start sm:static sm:w-20 sm:border-t-0 sm:border-r',
     md: 'md:w-64'
   }
@@ -18,7 +19,7 @@ export const Aside = () => {
         <Navbar className="flex flex-col gap-2 items-start sm:items-center md:items-start" />
       </div>
       <div>
-        -
+        <ThemeToggle />
       </div>
     </aside>
   )

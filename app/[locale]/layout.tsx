@@ -7,6 +7,7 @@ import { Aside } from '@/src/components/layout/Aside'
 import { Header } from '@/src/components/layout/Header'
 import { Footer } from '@/src/components/layout/Footer'
 import { defaultLocale } from '@/middleware'
+import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
   return (
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
           <div className="flex h-full max-w-6xl mx-auto py-10 sm:py-0 ">
             <Aside />
             <main>
@@ -45,6 +47,7 @@ export default async function RootLayout({
               <Footer />
             </main>
           </div>
+        </ThemeProvider>
       </body>
     </html>
   )
