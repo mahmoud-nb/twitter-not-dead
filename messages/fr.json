@@ -1,5 +1,9 @@
 {
     "Index": {
-      "title": "Bonjour tout le monde!"
+      "title": "Bonjour tout le monde!",
+      "Home": "Accueil",
+      "Explore": "Explorer",
+      "Tweet": "Tweet",
+      "Profil": "Profil"
     }
   }
