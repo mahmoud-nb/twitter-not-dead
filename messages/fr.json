@@ -1,15 +1,17 @@
 {
-    "Index": {
-      "title": "Bonjour tout le monde!"
-    },
-    "Common": {
-      "Login": "Login",
-      "Logout": "Logout"
-    },
-    "Navbar": {
-      "Home": "Accueil",
-      "Explore": "Explorer",
-      "Tweet": "Tweet",
-      "Profil": "Profil"
+  "Common": {
+    "Login": "Login",
+    "Logout": "Logout"
+  },
+  "Navbar": {
+    "Home": "Accueil",
+    "Explore": "Explorer",
+    "Tweet": "Tweet",
+    "Profil": "Profil"
+  },
+  "Page": {
+    "title": {
+      "home": "Accueil"
     }
   }
+}

@@ -1,15 +1,17 @@
 {
-    "Index": {
-      "title": "Hello world!"
-    },
-    "Common": {
-      "Login": "Login",
-      "Logout": "Logout"
-    },
-    "Navbar": {
-        "Home": "Home",
-        "Explore": "Explore",
-        "Tweet": "Tweet",
-        "Profil": "Profil"
+  "Common": {
+    "Login": "Login",
+    "Logout": "Logout"
+  },
+  "Navbar": {
+      "Home": "Home",
+      "Explore": "Explore",
+      "Tweet": "Tweet",
+      "Profil": "Profil"
+  },
+  "Page": {
+    "title": {
+      "home": "Home"
     }
   }
+}

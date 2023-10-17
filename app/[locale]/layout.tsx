@@ -32,12 +32,14 @@ export default async function RootLayout({
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
-          <div className="flex h-full max-w-6xl mx-auto py-10 sm:py-0 ">
+          <div className="flex h-full max-w-6xl mx-auto py-10 relative sm:py-0">
             <Aside />
-            <main className="flex-1 px-4">
+            <main className="flex-1 sm:pl-20 md:pl-72">
               <Header />
-              <div className="p-2">
-                {children}
+              <div className="flex">
+                <div className="max-w-xl border-r border-blue-50">
+                  {children}
+                </div>
               </div>
               <Footer />
             </main>
