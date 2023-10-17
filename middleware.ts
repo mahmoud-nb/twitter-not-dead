@@ -1,10 +1,11 @@
 import createMiddleware from 'next-intl/middleware';
 
 export const defaultLocale = 'en'
+export const locales = ['en', 'fr']
  
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ['en', 'fr'],
+  locales,
  
   // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
   defaultLocale

@@ -2,6 +2,7 @@ import Image from "next/image"
 import clsx from "clsx"
 import { Navbar } from "./Navbar"
 import ThemeToggle from "../theme/ThemeToggle"
+import Globals from "@/config/globals"
 
 export const Aside = () => {
   const mainAsideStyle = {
@@ -10,10 +11,13 @@ export const Aside = () => {
     md: 'md:w-64'
   }
 
+  const logoSrc = Globals.logo
+  const logoAlt = Globals.title
+
   return (
     <aside className={clsx(mainAsideStyle.xs, mainAsideStyle.sm, mainAsideStyle.md)}>
       <h1 className="flex justify-start sm:justify-center md:justify-start px-2 md:px-5">
-        <Image src="/images/twitter-logo.png" alt="Twitter" width={32} height={30}  />
+        <Image src={logoSrc} alt={logoAlt} width={32} height={30} />
       </h1>
       <div className="flex-auto">
         <Navbar className="flex flex-col gap-2 items-start sm:items-center md:items-start" />

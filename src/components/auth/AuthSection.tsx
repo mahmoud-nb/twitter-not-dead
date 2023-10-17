@@ -5,7 +5,7 @@ import LogoutButton from './LogoutButton'
 
 export const AuthSection = ({ isLoggedIn = false }: { isLoggedIn: Boolean }) => {
 
-  const t = useTranslations('Index')
+  const t = useTranslations('Common')
   const messages = { label: t(isLoggedIn ? 'Logout' : 'Login') }
 
   return (

@@ -5,7 +5,7 @@ import { buttonVariants } from '@/src/components/ui/button'
 import { clsx } from 'clsx'
 
 export const Navbar = ({ className }: { className: string }) => {
-  const t = useTranslations('Index')
+  const t = useTranslations('Navbar')
   const iconSize = 20
   const iconStrokeWidth = 1
   const linkCommonStyle = "flex items-center justify-center md:justify-start gap-4 flex-auto px-2"
