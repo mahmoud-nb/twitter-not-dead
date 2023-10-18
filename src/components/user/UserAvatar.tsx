@@ -1,15 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/src/components/ui/avatar';
-import { PostHome } from '@/src/query/post.query'
+import { User } from '@/src/query/user.query';
 
 type userAvatarProps = {
-    user: PostHome['user'];
+    user:User
 }
 
 export const UserAvatar = ({ user } : userAvatarProps) => {
   return (
     <Avatar>
-        {user.image ? <AvatarImage src={user.image} alt={user.username as string} /> : null}
-        <AvatarFallback>{user.username?.slice(0, 2).toUpperCase()}</AvatarFallback>
+        {user?.image ? <AvatarImage src={user.image} alt={user.username as string} /> : null}
+        <AvatarFallback>{user?.username?.slice(0, 2).toUpperCase()}</AvatarFallback>
     </Avatar>
   )
 }
