@@ -1,7 +1,8 @@
 {
   "Common": {
     "Login": "Login",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "Tweet": "Tweet"
   },
   "Navbar": {
     "Home": "Accueil",
@@ -10,8 +11,18 @@
     "Profil": "Profil"
   },
   "Page": {
-    "title": {
-      "home": "Accueil"
+    "Home": {
+      "title": "Accueil"
+    }
+  },
+  "Tweet": {
+    "Write": {
+      "content": { 
+        "placeholder": "Quoi de neuf ?!"
+      },
+      "button": {
+        "text": "Tweet"
+      }
     }
   }
 }

@@ -10,8 +10,18 @@
       "Profil": "Profil"
   },
   "Page": {
-    "title": {
-      "home": "Home"
+    "Home": {
+      "title": "Welcome to the home page!"
+    }
+  },
+  "Tweet": {
+    "Write": {
+      "content": { 
+        "placeholder": "What's new ?!"
+      },
+      "button": {
+        "text": "Tweet"
+      }
     }
   }
 }
