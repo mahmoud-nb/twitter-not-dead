@@ -1,5 +1,5 @@
-import { Post } from '@/src/components/post/Post'
 import { getLatetestPosts } from '@/src/query/post.query'
+import { PostCard } from '@/src/components/post/PostCard'
 
 export const Posts = async () => {
   const posts = await getLatetestPosts()
@@ -7,7 +7,7 @@ export const Posts = async () => {
   return (
     <div>
         {posts.map((post) => (
-          <Post key={post.id} post={post} />
+          <PostCard key={post.id} post={post} />
         ))}
     </div>
   )

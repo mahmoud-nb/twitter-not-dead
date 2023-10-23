@@ -3,7 +3,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Button } from '@/src/components/ui/button'
 import { Textarea } from '@/src/components/ui/textarea'
-import { createPost } from './write-post.action'
+import { createPost } from '../../actions/write-post.action'
 
 type Inputs = {
   content: string

@@ -1,8 +1,14 @@
-import React from 'react'
+import { PostView } from "@/src/components/post/PostView"
 
-export default function  page() {
+type PostPageParams = { postId: string }
+
+export default async function  Post({ params }: { params: PostPageParams }) {
+
+
   return (
-    <div>page</div>
+    <div>
+      <PostView postId={params.postId} />
+    </div>
   )
 }
 

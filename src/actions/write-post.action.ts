@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "@/lib/prisma"
-import { getUser } from "@/src/query/user.query"
+import { getCurrentUser } from "@/src/query/user.query"
 
 type Inputs = {
   content: string
@@ -10,7 +10,7 @@ type Inputs = {
 export const createPost = async (values:Inputs) => {
   console.log("I'm on th e server", values)
 
-  const user = await getUser()
+  const user = await getCurrentUser()
 
   if (user) {
     const post = await prisma.post.create({

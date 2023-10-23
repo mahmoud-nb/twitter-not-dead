@@ -11,7 +11,7 @@ export default function Home() {
   }
 
   return (
-    <div >
+    <div>
       <h2 className="text-xl font-medium mb-3 p-4">{t('Page.Home.title')}</h2>
       <Write messages={writePostFormMessages} />
       <Posts />

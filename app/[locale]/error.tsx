@@ -19,7 +19,7 @@ export default function Error({
   }, [error])
  
   return (
-    <div>
+    <div className="p-4">
       <Alert className="my-8">
         <AlertTriangle />
         <AlertTitle>Something went wrong!</AlertTitle>

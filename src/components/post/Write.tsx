@@ -1,10 +1,10 @@
 import { UserAvatar } from '@/src/components/user/UserAvatar'
-import { getUser, User } from '@/src/query/user.query'
+import { getCurrentUser, User } from '@/src/query/user.query'
 import { WritePostForm } from './WritePostForm'
 
 export const Write = async ({ messages } : {messages?: Record<string, string>}) => {
   
-  const user:User = await getUser()
+  const user:User = await getCurrentUser()
 
   return (
     <div className="flex w-full flex-row items-start p-4 border-b border-blue-50">
