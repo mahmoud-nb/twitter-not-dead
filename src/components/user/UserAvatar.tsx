@@ -3,13 +3,14 @@ import { User } from '@/src/query/user.query';
 
 type userAvatarProps = {
     user:User
+    className?: string
 }
 
-export const UserAvatar = ({ user } : userAvatarProps) => {
+export const UserAvatar = ({ user, className } : userAvatarProps) => {
   return (
-    <Avatar>
+    <Avatar className={className}>
         {user?.image ? <AvatarImage src={user.image} alt={user.username as string} /> : null}
-        <AvatarFallback>{user?.username?.slice(0, 2).toUpperCase()}</AvatarFallback>
+        <AvatarFallback>{user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
     </Avatar>
   )
 }

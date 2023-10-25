@@ -4,9 +4,7 @@ import { getPostById, PostData } from "@/src/query/post.query"
 import { PostCard } from './PostCard'
 
 
-
 export const PostView = async ({ postId }: { postId:string }) => {
-
 
   const user = await getAuthSession()
 

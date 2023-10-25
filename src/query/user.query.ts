@@ -2,25 +2,37 @@ import { getAuthSession } from '@/lib/auth'
 import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 
-export const getUser = async (userId:string) => {
+type FindUniqueUserQuery = {
+  id?: string;
+  username?: string;
+  email?: string;
+}
 
-    const user = await prisma.user.findUnique({
-        where: { id: userId },
-    })
+export const getUser = async ({ id, email, username }: FindUniqueUserQuery) => {
 
-    return user
+  let where = null
+
+  if (id) where = { id }
+  if (email) where = { email }
+  if (username) where = { username }
+
+  if (!where) throw new Error("User not found")
+
+  const user = await prisma.user.findUnique({ where })
+
+  return user
 }
 
 export const getCurrentUser = async () => {
-    const session = await getAuthSession()
+  const session = await getAuthSession()
 
-    if (!session?.user.id) {
-        throw new Error("User not found")
-    }
+  if (!session?.user.id) {
+    throw new Error("User not found")
+  }
 
-    const user = await getUser(session.user.id)
+  const user = await getUser({ id: session.user.id })
 
-    return user
+  return user
 }
 
 export type User = Prisma.PromiseReturnType<typeof getUser>

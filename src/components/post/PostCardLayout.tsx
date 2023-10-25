@@ -1,10 +1,10 @@
-import { formatDate } from '@/lib/date';
-import clsx from 'clsx';
-import { MoreHorizontal } from 'lucide-react';
-import Link from 'next/link';
+import { timeAgo } from '@/lib/date'
+import clsx from 'clsx'
+import { MoreHorizontal } from 'lucide-react'
+import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { UserAvatar } from '@/src/components/user/UserAvatar'
-import { User } from '@/src/query/user.query';
+import { User } from '@/src/query/user.query'
 
 type PostLayoutProps = PropsWithChildren<{
     user: User;
@@ -24,11 +24,11 @@ export const PostCardLayout = ({ children, user, postId, createdAt, className }:
       <div className="ml-4 flex flex-col w-full gap-2">
         <div className="flex items-center gap-2">
           <div className="flex gap-2 text-sm font-bold text-card-foreground mr-auto">
-            <Link href={`/users/${user.id}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
-            <Link href={`/users/${user.id}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
+            <Link href={`/user/${user.username}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
+            <Link href={`/user/${user.username}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
           </div>
           {createdAt ? (
-              <span className="text-sm text-muted-foreground">{formatDate(createdAt)}</span>
+              <span className="text-sm text-muted-foreground">{timeAgo(createdAt)}</span>
           ) : null}
           <MoreHorizontal size={20} />
         </div>

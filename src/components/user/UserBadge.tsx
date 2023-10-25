@@ -11,8 +11,8 @@ export const UserBadge = ({ user, className }: { user:User, className?:string })
     <div className={clsx("flex gap-3", className)}>
       <UserAvatar user={user} />
       <div className="flex flex-col flex-auto gap-0.5">
-        <Link href={`/users/${user.id}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
-        <Link href={`/users/${user.id}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
+        <Link href={`/user/${user.username}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
+        <Link href={`/user/${user.username}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
       </div>
     </div>
   )

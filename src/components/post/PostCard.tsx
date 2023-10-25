@@ -5,6 +5,7 @@ import { Button } from '@/src/components/ui/button'
 import { Heart, MessageCircle, Repeat2 } from 'lucide-react'
 import { PostMainCardLayout } from './PostMainCardLayout'
 import { User } from '@/src/query/user.query'
+import dayjs from 'dayjs'
 
 type PostProps = {
   post: PostHome
@@ -15,9 +16,12 @@ export const PostCard = ({ post, layout = 'default' }: PostProps) => {
 
   const postCardSection = (
     <div>
-      <Link href={`/posts/${post.id}`} className="test-sm text-foreground">
+      <Link href={`/post/${post.id}`} className="test-sm text-foreground">
           {post.content}
       </Link>
+      { layout === 'main' && (<div className="text-sm text-muted-foreground mt-2">
+        {dayjs(post.createdAt).format('HH:mm A · DD-MM-YYYY ')}
+      </div>)}
       <div className="flex items-center gap-6 mt-2">
         <Button size="icon" variant="ghost">
           <MessageCircle strokeWidth={1} size={20} /> 

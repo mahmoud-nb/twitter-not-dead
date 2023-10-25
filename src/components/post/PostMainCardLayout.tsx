@@ -1,10 +1,5 @@
-import { formatDate } from '@/lib/date';
-import { PostHome } from '@/src/query/post.query'
 import clsx from 'clsx';
-import { MoreHorizontal } from 'lucide-react';
-import Link from 'next/link';
 import { PropsWithChildren } from 'react'
-import { UserAvatar } from '@/src/components/user/UserAvatar'
 import { UserBadge } from '../user/UserBadge';
 import { User } from '@/src/query/user.query';
 
