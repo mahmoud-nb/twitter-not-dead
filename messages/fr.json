@@ -17,11 +17,13 @@
   },
   "Tweet": {
     "Write": {
-      "content": { 
-        "placeholder": "Quoi de neuf ?!"
+      "post": {
+        "placeholder": "Quoi de neuf ?!",
+        "button": "Publier"
       },
-      "button": {
-        "text": "Tweet"
+      "replay": {
+        "placeholder": "Postez votre réponse",
+        "button": "Répondre"
       }
     }
   }

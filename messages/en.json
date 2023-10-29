@@ -16,11 +16,13 @@
   },
   "Tweet": {
     "Write": {
-      "content": { 
-        "placeholder": "What's new ?!"
+      "post": {
+        "placeholder": "What's new ?!",
+        "button": "Tweet"
       },
-      "button": {
-        "text": "Tweet"
+      "replay": {
+        "placeholder": "Post your response",
+        "button": "Answer"
       }
     }
   }

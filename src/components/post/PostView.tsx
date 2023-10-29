@@ -13,6 +13,9 @@ export const PostView = async ({ postId }: { postId:string }) => {
   if(!post) notFound()
 
   return (
-    <PostCard key={post.id} post={post} layout='main' />
+    <>
+      <PostCard key={post.id} post={post} layout='main' />
+      {post.replies.map( reply => <PostCard key={reply.id} post={reply} /> )}
+    </>
   )
 }

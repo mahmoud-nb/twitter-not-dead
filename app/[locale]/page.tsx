@@ -6,8 +6,8 @@ export default function Home() {
   const t = useTranslations()
 
   const writePostFormMessages = {
-    contentPlaceholder: t('Tweet.Write.content.placeholder'),
-    buttonText: t('Tweet.Write.button.text')
+    contentPlaceholder: t('Tweet.Write.post.placeholder'),
+    buttonText: t('Tweet.Write.post.button')
   }
 
   return (

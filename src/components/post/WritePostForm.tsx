@@ -19,7 +19,7 @@ export const WritePostForm = ({ messages } : {messages?: Record<string, string>}
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Textarea placeholder={messages?.contentPlaceholder} className="border-0" {...register("content")} />
-      <div className="flrx justify-end mt-2">
+      <div className="flex justify-end mt-2">
         <Button type="submit">{messages?.buttonText}</Button>
       </div>
     </form>

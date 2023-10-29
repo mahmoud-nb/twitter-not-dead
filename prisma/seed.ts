@@ -4,8 +4,9 @@ import { Prisma, PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 const main = async () => {
-    const users = []
 
+    // Users
+    const users = []
     for (let i=0 ; i<10 ; i++) {
         const user = {
             username: faker.internet.userName(),
@@ -23,8 +24,9 @@ const main = async () => {
         users.push(u)
     }
 
+    // Posts
     const posts = []
-    for (let i=0 ; i<100 ; i++) {
+    for (let i=0 ; i<200 ; i++) {
         const randomUserIndex = faker.number.int({ min:0, max: users.length - 1 })
         const randomWorldIndex = faker.number.int({ min:1, max: 12 })
 
@@ -37,7 +39,8 @@ const main = async () => {
         posts.push(p)
     }
 
-    for (let i=0 ; i<100 ; i++) {
+    // Likes
+    for (let i=0 ; i<150 ; i++) {
         const randomUserIndex = faker.number.int({ min:0, max: users.length - 1 })
         const randomPostIndex = faker.number.int({ min:0, max: posts.length - 1 })
 
@@ -49,16 +52,33 @@ const main = async () => {
         await prisma.like.create({ data: like })
     }
 
-    for (let i=0 ; i<50 ; i++) {
+    // Replies
+    for (let i=0 ; i<100 ; i++) {
+        const randomUserIndex = faker.number.int({ min:0, max: users.length - 1 })
+        const randomPostIndex = faker.number.int({ min:0, max: posts.length - 1 })
+        const randomWorldIndex = faker.number.int({ min:1, max: 12 })
+
+        const reply = {
+            content: faker.lorem.sentence(randomWorldIndex),
+            parentId: posts[randomPostIndex].id,
+            userId: users[randomUserIndex].id
+        } satisfies Prisma.PostUncheckedCreateInput
+
+        await prisma.post.create({ data: reply })
+    }
+
+    // Reposts
+    for (let i=0 ; i<100 ; i++) {
         const randomUserIndex = faker.number.int({ min:0, max: users.length - 1 })
         const randomPostIndex = faker.number.int({ min:0, max: posts.length - 1 })
 
         const repost = {
-            postId: posts[randomPostIndex].id,
+            content: `Repost of ${randomPostIndex}`,
+            originalId: posts[randomPostIndex].id,
             userId: users[randomUserIndex].id
-        } satisfies Prisma.RepostUncheckedCreateInput
+        } satisfies Prisma.PostUncheckedCreateInput
 
-        await prisma.repost.create({ data: repost })
+        await prisma.post.create({ data: repost })
     }
 }
 

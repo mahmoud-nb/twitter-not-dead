@@ -72,7 +72,6 @@ model User {
   followeds     Follow[]  @relation("followed")
   posts         Post[]
   likes         Like[]
-  reposts       Repost[]
 }
 
 model Follow {
@@ -89,27 +88,26 @@ model Post {
   content       String
   image         String?
   link          String?
-  parentId      String?
-  userId        String
   createdAt     DateTime  @default(now())
 
+  // Relation avec l'utilisateur qui a créé le post
+  userId        String
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
   likes         Like[]
-  reposts       Repost[]
+
+  // Relation avec les reponses
+  parentId      String?
   replies       Post[]    @relation("comments")
   parent        Post?     @relation("comments", fields: [parentId], references: [id], onDelete: Cascade)
+
+  // Relation avec les republiques
+  originalId    String?
+  reposts       Post[]    @relation("reposts")
+  original      Post?     @relation("reposts", fields: [originalId], references: [id])
 }
 
 model Like {
-  id			      String		@id @default(cuid())
-  userId        String
-  postId        String
-  createdAt     DateTime  @default(now())
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post          Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-}
-
-model Repost {
   id			      String		@id @default(cuid())
   userId        String
   postId        String
