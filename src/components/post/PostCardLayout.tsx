@@ -31,8 +31,8 @@ export const PostCardLayout = ({ post, children, className }: PostLayoutProps) =
       <div className="ml-4 flex flex-col w-full gap-2">
         <div className="flex items-center gap-2">
           <div className="flex gap-2 text-sm font-bold text-card-foreground mr-auto">
-            <Link href={`/user/${user.username}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
-            <Link href={`/user/${user.username}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
+            <Link href={`/${user.username}`} className="text-sm font-bold">{user.name} {user.lastname}</Link>
+            <Link href={`/${user.username}`} className="text-sm font-light text-gray-500">{`@${user.username}`}</Link>
           </div>
           {post.createdAt ? (
               <span className="text-sm text-muted-foreground">{timeAgo(post.createdAt)}</span>
