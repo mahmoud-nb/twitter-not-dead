@@ -13,7 +13,7 @@ type PostCardProps = {
 
 export const PostCard = ({ post, layout = 'default' }: PostCardProps) => {
 
-  console.log('POST', post)
+  console.log('POST:', post)
 
   const postCardSection = (postElement: PostHome) => { 
 
@@ -58,7 +58,7 @@ export const PostCard = ({ post, layout = 'default' }: PostCardProps) => {
   const displayCard = post.originalId ? post.original : post
 
   return <div className="flex flex-col gap-3 p-4 border-t border-blue-50">
-    <div>{ repostCardHead }</div>
+    {post.originalId && <div>{ repostCardHead }</div>}
     <div>{displayPostCard(displayCard as PostHome)}</div>
   </div>
 }

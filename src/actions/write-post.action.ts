@@ -7,7 +7,7 @@ type Inputs = {
   content: string
 }
 
-export const createPost = async (values:Inputs) => {
+export const createPost = async (values:Inputs, postId:string|null = null) => {
   console.log("I'm on th e server", values)
 
   const user = await getCurrentUser()
@@ -16,6 +16,7 @@ export const createPost = async (values:Inputs) => {
     const post = await prisma.post.create({
       data: {
         content: values.content,
+        ...( postId && { parentId: postId } ),
         userId: user.id
       }
     }) 

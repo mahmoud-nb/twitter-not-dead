@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import {useTranslations} from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { Home, PenSquare, Search, User } from 'lucide-react'
 import { buttonVariants } from '@/src/components/ui/button'
 import { clsx } from 'clsx'
+import { User as UserType } from '@/src/query/user.query'
 
-export const Navbar = ({ className }: { className: string }) => {
+export const Navbar = ({ user, className }: { user: UserType, className: string }) => {
   const t = useTranslations('Navbar')
   const iconSize = 22
   const iconStrokeWidth = 2
@@ -32,7 +33,7 @@ export const Navbar = ({ className }: { className: string }) => {
         </div>
       </Link>
 
-      <Link href="/profile" className={clsx(buttonVariants({ variant: "ghost" }), 'w-full')}>
+      <Link href={`/${user?.username}`} className={clsx(buttonVariants({ variant: "ghost" }), 'w-full')}>
         <div className={linkCommonStyle}>
           <User strokeWidth={iconStrokeWidth} size={iconSize} />
           <span className="hidden text-lg md:block">{t('Profil')}</span>

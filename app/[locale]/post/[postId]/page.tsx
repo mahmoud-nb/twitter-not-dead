@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 
 type PostPageParams = { postId: string }
 
-export default function  Post({ params }: { params: PostPageParams }) {
+export default function  Post({ params } : { params: PostPageParams }) {
   const t = useTranslations()
 
   const writePostFormMessages = {
@@ -15,7 +15,7 @@ export default function  Post({ params }: { params: PostPageParams }) {
   return (
     <div>
       <PostView postId={params.postId} />
-      <Write messages={writePostFormMessages} />
+      <Write messages={writePostFormMessages} postId={params.postId} />
     </div>
   )
 }
