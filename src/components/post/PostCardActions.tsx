@@ -3,6 +3,7 @@
 import { toggleLike } from '@/src/actions/write-post.action'
 import { Button } from '@/src/components/ui/button'
 import { PostHome } from '@/src/query/post.query'
+import clsx from 'clsx'
 import { Heart, MessageCircle, Repeat2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { MouseEventHandler } from 'react'
@@ -17,7 +18,7 @@ export const PostCardActions = ({ post, isLiked, className } : PostCardActionsPr
 
   const router = useRouter()
 
-  const iconSize = 20
+  const iconSize = 22
   const iconStrokeWidth = 1
 
   const onLikeClick:MouseEventHandler<HTMLButtonElement> | undefined = (event) => {
@@ -26,8 +27,6 @@ export const PostCardActions = ({ post, isLiked, className } : PostCardActionsPr
 
     router.refresh()
   }
-
-  setTimeout(() => { console.log('isLiked =', isLiked) }, 2000)
 
   return (
     <div className={className}>
@@ -39,9 +38,9 @@ export const PostCardActions = ({ post, isLiked, className } : PostCardActionsPr
         <Repeat2 strokeWidth={iconStrokeWidth} size={iconSize} /> 
         <span className="text-muted-foreground text-sm ml-2">{post._count.reposts}</span>
       </Button>
-      <Button size="icon" variant="ghost" onClick={onLikeClick}>
-        <Heart strokeWidth={iconStrokeWidth} color={isLiked ? '#f91880' : '#111111'} size={iconSize} /> 
-        <span className="text-muted-foreground text-sm ml-2">{post._count.likes}</span>
+      <Button size="icon" variant="ghost" onClick={onLikeClick} className={clsx({ 'text-red-500': isLiked })}>
+        <Heart strokeWidth={iconStrokeWidth} size={iconSize} /> 
+        <span className={clsx('text-muted-foreground text-sm ml-2', {'text-red-500': isLiked})}>{post._count.likes}</span>
       </Button>
     </div>
   )

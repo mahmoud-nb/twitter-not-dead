@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { PostCardLayout } from './PostCardLayout'
-import { PostHome, isLikedPost } from '@/src/query/post.query'
+import { PostHome } from '@/src/query/post.query'
 import { PostMainCardLayout } from './PostMainCardLayout'
 import dayjs from 'dayjs'
-import { User, getCurrentUser } from '@/src/query/user.query'
+import { User } from '@/src/query/user.query'
 import { PostCardActions } from './PostCardActions'
 import { Repeat2 } from 'lucide-react'
 
@@ -16,14 +16,11 @@ type PostCardProps = {
 
 export const PostCard = async ({ post, user, messages, layout = 'default' }: PostCardProps) => {
 
-  
+  /*
   let isLikedByCurrentUser:Boolean = false
   if (user?.id) {
     const isLikedByCurrentUser = await isLikedPost(post.id, user.id)
-    console.log('POST:isLikedByCurrentUser2', !!isLikedByCurrentUser)
-  }
-
-  //console.log('POST:', isLikedByCurrentUser, post)
+  }*/
 
   const postCardSection = (postElement: PostHome) => { 
 
@@ -37,7 +34,7 @@ export const PostCard = async ({ post, user, messages, layout = 'default' }: Pos
         </Link>
         { layout === 'main' && (<div className="text-sm text-muted-foreground mt-2">
           {dayjs(postElement.createdAt).format('HH:mm A · DD-MM-YYYY ')}</div>)}
-        <PostCardActions post={postElement} isLiked={!!isLikedByCurrentUser} className="flex items-center gap-6 mt-2" />
+        <PostCardActions post={postElement} isLiked={post.likes.length > 0} className="flex items-center gap-6 mt-2" />
       </div>
     )
   }

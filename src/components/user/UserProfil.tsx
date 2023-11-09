@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { UserAvatar } from "@/src/components/user/UserAvatar"
 import { getUserProfil } from "@/src/query/user.query"
 import { Link2, MapPin } from "lucide-react"
-import { Posts } from '../post/Posts'
 import { PostCard } from '../post/PostCard'
 import { getUserPosts } from '@/src/query/post.query'
 
