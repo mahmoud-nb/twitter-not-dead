@@ -37,7 +37,7 @@ export default async function RootLayout({
             <main className="flex-1 sm:pl-20 md:pl-72">
               <Header />
               <div className="flex min-h-full">
-                <div className="max-w-xl w-full border-r border-blue-50">
+                <div className="max-w-xl w-full border-r border-blue-50 dark:border-gray-700">
                   {children}
                 </div>
               </div>

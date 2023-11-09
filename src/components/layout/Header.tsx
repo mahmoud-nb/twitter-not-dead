@@ -8,7 +8,7 @@ export const Header = () => {
   const logoAlt = Globals.title
 
   return (
-    <header className="flex justify-center gap-1 p-2 fixed top-0 left-0 right-0 border-b border-blue-50 sm:hidden">
+    <header className="flex justify-center gap-1 p-2 fixed top-0 left-0 right-0 border-b border-blue-50 bg-white dark:bg-gray-950 dark:border-gray-700 sm:hidden">
       <Image src={logoSrc} alt={logoAlt} width={32} height={30} />
     </header>
   )

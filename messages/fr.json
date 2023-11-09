@@ -16,6 +16,9 @@
     }
   },
   "Tweet": {
+    "Card": {
+      "reposted": "a retweeté"
+    },
     "Write": {
       "post": {
         "placeholder": "Quoi de neuf ?!",

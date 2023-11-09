@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 
 
-const postSelect = (userId?: string) => ({
+export const postQuerySelect = (userId?: string) => ({
   id: true,
   content: true,
   image: true,
@@ -23,7 +23,7 @@ const postSelect = (userId?: string) => ({
       userId: true,
     },
     where: {
-      userId: userId ?? "error"
+      userId: userId
     }
   },
   replies: {
@@ -31,7 +31,7 @@ const postSelect = (userId?: string) => ({
       userId: true,
     },
     where: {
-      userId: userId ?? "error"
+      userId: userId
     }
   },
   original: {
@@ -56,7 +56,7 @@ const postSelect = (userId?: string) => ({
           userId: true,
         },
         where: {
-          userId: userId ?? "error"
+          userId: userId
         }
       },
       replies: {
@@ -64,7 +64,7 @@ const postSelect = (userId?: string) => ({
           userId: true,
         },
         where: {
-          userId: userId ?? "error"
+          userId: userId
         }
       },
       _count: {
@@ -102,12 +102,12 @@ const postSelect = (userId?: string) => ({
 export const getLatetestPosts = (userId?: string) => 
   prisma.post.findMany({
     select: {
-      ...postSelect(userId),
+      ...postQuerySelect(userId),
     },
     where: {
       parentId: null
     },
-    take: 4,
+    take: 50,
     orderBy: {
       createdAt: 'desc'
     },
@@ -115,16 +115,41 @@ export const getLatetestPosts = (userId?: string) =>
 
 export const getPostById = (id: string, userId?: string) => prisma.post.findUnique({
   select: {
-    ...postSelect(userId),
+    ...postQuerySelect(userId),
     replies: {
-      select: postSelect(userId)
+      select: postQuerySelect(userId)
     },
     parent: {
-      select: postSelect(userId)
+      select: postQuerySelect(userId)
     }
   },
   where: {
     id
+  }
+})
+
+export const getUserPosts = async (userId:string) => prisma.post.findMany({
+  select: {
+    ...postQuerySelect(userId),
+  },
+  where: {
+    userId,
+    parentId: null
+  },
+  take: 20,
+  orderBy: {
+    createdAt: 'desc'
+  },
+})
+
+
+export const isLikedPost = (postId:string, userId:string) => prisma.like.findFirst({
+  select: {
+    id: true
+  },
+  where: {
+    postId, 
+    userId
   }
 })
 

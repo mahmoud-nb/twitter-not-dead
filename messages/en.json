@@ -15,6 +15,9 @@
     }
   },
   "Tweet": {
+    "Card": {
+      "reposted": "retweeted"
+    },
     "Write": {
       "post": {
         "placeholder": "What's new ?!",

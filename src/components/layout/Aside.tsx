@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/src/query/user.query"
 
 export const Aside = async () => {
   const mainAsideStyle = {
-    xs: 'flex flex-col gap-4 p-2 border-t border-blue-50 w-64 fixed top-0 bottom-0 -left-72',
+    xs: 'flex flex-col gap-4 p-2 border-t border-blue-50 dark:border-gray-700 w-64 fixed top-0 bottom-0 -left-72',
     sm: 'sm:flex-col sm:justify-start sm:left-0 sm:w-20 sm:border-t-0 sm:border-r',
     md: 'md:w-72'
   }

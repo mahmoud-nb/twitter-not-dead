@@ -13,7 +13,7 @@ type Inputs = {
 
 export const WritePostForm = ({ messages, postId } : { messages?: Record<string, string>, postId?: string }) => {
   
-  const router = useRouter();
+  const router = useRouter()
   const { register, handleSubmit, reset } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {

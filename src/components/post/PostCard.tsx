@@ -1,19 +1,29 @@
 import Link from 'next/link'
 import { PostCardLayout } from './PostCardLayout'
-import { PostHome } from '@/src/query/post.query'
-import { Button } from '@/src/components/ui/button'
-import { Heart, MessageCircle, Repeat2 } from 'lucide-react'
+import { PostHome, isLikedPost } from '@/src/query/post.query'
 import { PostMainCardLayout } from './PostMainCardLayout'
 import dayjs from 'dayjs'
+import { User, getCurrentUser } from '@/src/query/user.query'
+import { PostCardActions } from './PostCardActions'
+import { Repeat2 } from 'lucide-react'
 
 type PostCardProps = {
   post: PostHome
+  user: User
+  messages?: Record<string, string>,
   layout?: string
 }
 
-export const PostCard = ({ post, layout = 'default' }: PostCardProps) => {
+export const PostCard = async ({ post, user, messages, layout = 'default' }: PostCardProps) => {
 
-  console.log('POST:', post)
+  
+  let isLikedByCurrentUser:Boolean = false
+  if (user?.id) {
+    const isLikedByCurrentUser = await isLikedPost(post.id, user.id)
+    console.log('POST:isLikedByCurrentUser2', !!isLikedByCurrentUser)
+  }
+
+  //console.log('POST:', isLikedByCurrentUser, post)
 
   const postCardSection = (postElement: PostHome) => { 
 
@@ -26,22 +36,8 @@ export const PostCard = ({ post, layout = 'default' }: PostCardProps) => {
             {postElement.content}
         </Link>
         { layout === 'main' && (<div className="text-sm text-muted-foreground mt-2">
-          {dayjs(postElement.createdAt).format('HH:mm A · DD-MM-YYYY ')}
-        </div>)}
-        <div className="flex items-center gap-6 mt-2">
-          <Button size="icon" variant="ghost">
-            <MessageCircle strokeWidth={iconStrokeWidth} size={iconSize} /> 
-            <span className="text-muted-foreground text-sm ml-2">{postElement._count.replies}</span>
-          </Button>
-          <Button size="icon" variant="ghost">
-            <Repeat2 strokeWidth={iconStrokeWidth} size={iconSize} /> 
-            <span className="text-muted-foreground text-sm ml-2">{postElement._count.reposts}</span>
-          </Button>
-          <Button size="icon" variant="ghost">
-            <Heart strokeWidth={iconStrokeWidth} size={iconSize} /> 
-            <span className="text-muted-foreground text-sm ml-2">{postElement._count.likes}</span>
-          </Button>
-        </div>
+          {dayjs(postElement.createdAt).format('HH:mm A · DD-MM-YYYY ')}</div>)}
+        <PostCardActions post={postElement} isLiked={!!isLikedByCurrentUser} className="flex items-center gap-6 mt-2" />
       </div>
     )
   }
@@ -52,12 +48,12 @@ export const PostCard = ({ post, layout = 'default' }: PostCardProps) => {
 
   const repostCardHead = (<div className="flex items-center gap-2">
     <Repeat2 strokeWidth={1} size={18} />
-    <div className="text-sm text-slate-500 font-medium">{post.user.name} {post.user.lastname} a retweeté!</div>
+    <div className="text-sm text-slate-500 font-medium">{post.user.name} {post.user.lastname} {messages?.cardReposted}</div>
   </div>)
 
   const displayCard = post.originalId ? post.original : post
 
-  return <div className="flex flex-col gap-3 p-4 border-t border-blue-50">
+  return <div className="flex flex-col gap-3 p-4 border-t border-blue-50 dark:border-gray-700">
     {post.originalId && <div>{ repostCardHead }</div>}
     <div>{displayPostCard(displayCard as PostHome)}</div>
   </div>
