@@ -39,7 +39,7 @@ export const getUser = async ({ id, email, username }: FindUniqueUserQuery) => {
   return user
 }
 
-export const getUserProfil = async ({ id, email, username }: FindUniqueUserQuery) => {
+export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, username }: FindUniqueUserQuery) => {
 
   let where = null
 

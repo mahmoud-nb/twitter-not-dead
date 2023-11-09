@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { getCurrentUser } from "@/src/query/user.query"
 import { isLikedPost } from '@/src/query/post.query'
+import { revalidatePath } from "next/cache"
 
 type Inputs = {
   content: string
@@ -32,16 +33,13 @@ export const toggleLike = async (postId:string, isLiked:Boolean = false) => {
   
   if (user) {
     const isLikedByCurrentUser = await isLikedPost(postId, user.id)
-    console.log('___toggleLike', isLiked, postId, user?.name)
+    
     if ( !!isLikedByCurrentUser ) {
-      const like = await prisma.like.deleteMany({
+      const like = await prisma.like.delete({
         where: {
-          postId,
-          userId: user.id
+          id: isLikedByCurrentUser.id
         }
       })
-
-      console.log('___deleteMany:::', like)
 
       return like
     } 
@@ -53,7 +51,8 @@ export const toggleLike = async (postId:string, isLiked:Boolean = false) => {
       }
     }) 
 
-    console.log('___create:::', like)
+    revalidatePath('/')
+    revalidatePath(`/post/${postId}`)
 
     return like
   }
