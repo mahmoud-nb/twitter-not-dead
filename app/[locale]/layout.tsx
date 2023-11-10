@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { notFound } from 'next/navigation'
-import '../globals.css'
+import { notFound, redirect } from 'next/navigation'
 import clsx from 'clsx'
 import { Aside } from '@/src/components/layout/Aside'
 import { Header } from '@/src/components/layout/Header'
@@ -9,6 +8,8 @@ import { Footer } from '@/src/components/layout/Footer'
 import { locales, defaultLocale } from '@/middleware'
 import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
 import Globals from '@/config/globals'
+import '../globals.css'
+import { getCurrentUser } from '@/src/query/user.query'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,9 @@ export default async function RootLayout({
 
   const isValidLocale = locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound();
+
+  const user = await getCurrentUser()
+  if (!user) redirect('/login')
 
   return (
     <html lang={locale || defaultLocale} className="h-full" >

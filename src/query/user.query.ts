@@ -97,6 +97,7 @@ export const getCurrentUser = async () => {
   const session = await getAuthSession()
 
   if (!session?.user.id) {
+    return false
     throw new Error("User not found")
   }
 

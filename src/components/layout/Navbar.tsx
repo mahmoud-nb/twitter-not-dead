@@ -22,7 +22,7 @@ export const Navbar = ({ user, className }: { user: UserType, className: string 
       <Link href="/explore" className={clsx(buttonVariants({ variant: "ghost" }), 'w-full')}>
         <div className={linkCommonStyle}>
           <Search strokeWidth={iconStrokeWidth} size={iconSize} />
-          <span className="hidden text-lg md:block">{t('Explore')}</span>
+          <span className="hidden text-lg md:block">{t('Explore')}</span>                                                                      
         </div>
       </Link>
 
