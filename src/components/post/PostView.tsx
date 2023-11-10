@@ -6,16 +6,19 @@ import { PostCard } from './PostCard'
 
 export const PostView = async ({ postId }: { postId:string }) => {
 
-  const user = await getAuthSession()
+  const session = await getAuthSession()
+  const userId = session?.user.id
 
-  const post:PostData = await getPostById(postId, user?.id)
+  if (!userId) throw new Error('User is undefined')
+
+  const post:PostData = await getPostById(postId, userId)
 
   if(!post) notFound()
 
   return (
     <>
-      <PostCard key={post.id} post={post} layout='main' />
-      {post.replies.map( reply => <PostCard key={reply.id} post={reply} /> )}
+      <PostCard key={post.id} post={post} userId={userId} layout='main' />
+      {post.replies.map( reply => <PostCard key={reply.id} post={reply} userId={userId} /> )}
     </>
   )
 }

@@ -30,7 +30,7 @@ export default async function RootLayout({
   if (!isValidLocale) notFound();
 
   const user = await getCurrentUser()
-  if (!user) redirect('/login')
+  //if (!user) redirect('/login')
 
   return (
     <html lang={locale || defaultLocale} className="h-full" >

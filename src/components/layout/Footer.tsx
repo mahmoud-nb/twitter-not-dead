@@ -1,7 +1,3 @@
-import Link from 'next/link'
-import { buttonVariants } from '@/src/components/ui/button'
-import { Home, PenSquare, User } from 'lucide-react'
-import { clsx } from 'clsx'
 import { Navbar } from './Navbar'
 
 export const Footer = () => {

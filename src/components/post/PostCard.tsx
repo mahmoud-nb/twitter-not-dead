@@ -1,26 +1,27 @@
 import Link from 'next/link'
 import { PostCardLayout } from './PostCardLayout'
-import { PostHome } from '@/src/query/post.query'
+import { PostData, PostHome, isLikedPost } from '@/src/query/post.query'
 import { PostMainCardLayout } from './PostMainCardLayout'
 import dayjs from 'dayjs'
 import { User } from '@/src/query/user.query'
 import { PostCardActions } from './PostCardActions'
 import { Repeat2 } from 'lucide-react'
+import { getAuthSession } from '@/lib/auth'
 
 type PostCardProps = {
-  post: PostHome
-  user: User
+  post: PostHome | PostData
+  userId: string
   messages?: Record<string, string>,
   layout?: string
 }
 
-export const PostCard = async ({ post, user, messages, layout = 'default' }: PostCardProps) => {
+export const PostCard = async ({ post, userId, messages, layout = 'default' }: PostCardProps) => {
 
-  /*
-  let isLikedByCurrentUser:Boolean = false
-  if (user?.id) {
-    const isLikedByCurrentUser = await isLikedPost(post.id, user.id)
-  }*/
+  const session = await getAuthSession()
+
+  if (!post) throw new Error('Post is not defined')
+  
+  const isLikedByCurrentUser = await isLikedPost(post.id, userId)
 
   const postCardSection = (postElement: PostHome) => { 
 
@@ -34,7 +35,7 @@ export const PostCard = async ({ post, user, messages, layout = 'default' }: Pos
         </Link>
         { layout === 'main' && (<div className="text-sm text-muted-foreground mt-2">
           {dayjs(postElement.createdAt).format('HH:mm A · DD-MM-YYYY ')}</div>)}
-        <PostCardActions post={postElement} isLiked={post.likes.length > 0} className="flex items-center gap-6 mt-2" />
+        <PostCardActions post={postElement} isLiked={!!isLikedByCurrentUser} className="flex items-center gap-6 mt-2" />
       </div>
     )
   }

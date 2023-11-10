@@ -107,7 +107,7 @@ export const getLatetestPosts = (userId?: string) =>
     where: {
       parentId: null
     },
-    take: 50,
+    take: 5,
     orderBy: {
       createdAt: 'desc'
     },

@@ -5,7 +5,7 @@ import { buttonVariants } from '@/src/components/ui/button'
 import { clsx } from 'clsx'
 import { User as UserType } from '@/src/query/user.query'
 
-export const Navbar = ({ user, className }: { user?: UserType, className: string }) => {
+export const Navbar = ({ user, className }: { user?: UserType | null, className: string }) => {
   const t = useTranslations('Navbar')
   const iconSize = 22
   const iconStrokeWidth = 2

@@ -44,7 +44,7 @@ export const UserProfil = async ({ username, messages }: { username:string, mess
 
       <div className="mt-4">
         {userPosts.map((post) => (
-          <PostCard key={post.id} post={post} user={user} messages={messages} />
+          <PostCard key={post.id} post={post} userId={user.id} messages={messages} />
         ))}
       </div>
     </div>

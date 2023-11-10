@@ -8,7 +8,7 @@ import { getCurrentUser } from "@/src/query/user.query"
 
 export const Aside = async () => {
   const mainAsideStyle = {
-    xs: 'flex flex-col gap-4 p-2 border-t border-blue-50 w-64 fixed top-0 bottom-0 -left-72',
+    xs: 'flex flex-col gap-4 p-2 border-t border-blue-50 dark:border-gray-700 w-64 fixed top-0 bottom-0 -left-72',
     sm: 'sm:flex-col sm:justify-start sm:left-0 sm:w-20 sm:border-t-0 sm:border-r',
     md: 'md:w-72'
   }
@@ -24,7 +24,7 @@ export const Aside = async () => {
         <Image src={logoSrc} alt={logoAlt} width={32} height={30} />
       </h1>
       <div className="flex-auto">
-        {user && <Navbar user={user} className="flex flex-col gap-2 items-start sm:items-center md:items-start" />}
+        <Navbar user={user} className="flex flex-col gap-2 items-start sm:items-center md:items-start" />
       </div>
       <div>
         <ThemeToggle />
