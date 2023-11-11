@@ -29,7 +29,8 @@ export const authOptions: AuthOptions = {
 
         return session
     }
-  }
+  },
+  secret: env.NEXTAUTH_SECRET
 }
 
 export const getAuthSession = async () => {
