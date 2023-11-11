@@ -1,0 +1,5 @@
+# Gitlab user: username@medunes.net
+GITLAB_USER=__GITLAB_USER__
+
+# Gitlab token with container read permission (NO NEED FOR MORE THAN read_registry)
+GITLAB_TOKEN=__GITLAB_TOKEN__

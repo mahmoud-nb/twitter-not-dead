@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  nextjs:
+    container_name: ${COMPOSE_PROJECT_NAME}_nextjs.dev
+    build:
+      context: ../../
+      dockerfile: ./.docker/dev/nextjs/Dockerfile
+      args:
+        PORT: ${NODE_PORT}
+        NODE_ENV: ${NODE_ENV}
+        NODE_PORT: ${NODE_PORT}
+    environment:
+      MEDUNES_VERSION: ${MEDUNES_VERSION}
+      MEDUNES_BUILD_TIME: ${MEDUNES_BUILD_TIME}
+      PORT: ${NODE_PORT}
+      NODE_ENV: ${NODE_ENV}
+      NODE_PORT: ${NODE_PORT}
+      YARN_VERSION: 3.1.0
+    volumes:
+      - app:/app
+    networks:
+      internal: ~
+    ports:
+      - "3000:80"
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=twnd
+    networks:
+      internal: ~
+volumes:
+  app:
+    name: ${COMPOSE_PROJECT_NAME}_app
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/medunes/projects/twitter-not-dead
+
+networks:
+  internal:
+    driver: bridge
+
+
+

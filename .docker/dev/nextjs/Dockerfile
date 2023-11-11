@@ -1,0 +1,27 @@
+ARG NODE_VERSION=18
+FROM dev.tn-developers.org:5050/software-engineering/devops/docker-images/medunes-node${NODE_VERSION}-nextjs-dev:latest
+
+ARG MEDUNES_VERSION=dev
+ARG MEDUNES_BUILD_TIME="n/a"
+ARG PORT=${NODE_PORT}
+ARG NODE_ENV=development
+ARG NODE_PORT=3000
+ARG PLATFORM_ENVIRONMENT=local
+
+ENV MEDUNES_VERSION=${MEDUNES_VERSION}
+ENV MEDUNES_BUILD_TIME=${MEDUNES_BUILD_TIME}
+ENV PORT=${NODE_PORT}
+ENV NODE_ENV=${NODE_ENV}
+ENV NODE_PORT=${NODE_PORT}
+ENV PLATFORM_ENVIRONMENT=${PLATFORM_ENVIRONMENT}
+
+COPY ./.docker/dev/nextjs/init.d/31-sample-stage.sh /opt/entrypoint/init.d/01-sample-stage.sh
+
+WORKDIR /app
+
+ENTRYPOINT ["/opt/entrypoint/entrypoint.sh"]
+
+EXPOSE 3000
+STOPSIGNAL SIGQUIT
+
+CMD corepack yarn run dev

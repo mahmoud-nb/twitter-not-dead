@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  nextjs:
+    container_name: ${COMPOSE_PROJECT_NAME}_nextjs.prod
+    build:
+      context: ../../
+      dockerfile: ./.docker/prod/nextjs/Dockerfile
+      args:
+        MEDUNES_VERSION: ${MEDUNES_VERSION}
+        MEDUNES_BUILD_TIME: ${MEDUNES_BUILD_TIME}
+        PLATFORM_ENVIRONMENT: ${PLATFORM_ENVIRONMENT}
+        GITLAB_PACKAGE_TOKEN: ${GITLAB_PACKAGE_TOKEN}
+        YARN_VERSION: 3.1.0
+    environment:
+      MEDUNES_VERSION: ${MEDUNES_VERSION}
+      MEDUNES_BUILD_TIME: ${MEDUNES_BUILD_TIME}
+      PLATFORM_ENVIRONMENT: ${PLATFORM_ENVIRONMENT}
+      PORT: ${NODE_PORT}
+      NODE_ENV: ${NODE_ENV}
+      NODE_PORT: ${NODE_PORT}
+      YARN_VERSION: 3.1.0
+    networks:
+      internal: ~
+networks:
+  internal:
+    driver: bridge
+  dnsmasq_external:
+    external:
+      name: dnsmasq_external

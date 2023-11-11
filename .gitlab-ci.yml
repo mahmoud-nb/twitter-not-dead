@@ -1,0 +1,69 @@
+workflow: { }
+default:
+  tags:
+    - preprod
+####################################
+#             CONFIGS              #
+###################################
+
+variables:
+  REMIX_API: "http://rx.tn-developers.org/trigger"
+  REMIX_AUTH: deadbeef980123deadbeef980123
+
+stages:
+  - build
+  - deploy
+###################################
+#   BUILD APPLICATION IMAGE       #
+##################################
+build-job:
+  stage: build
+  variables:
+    container: 'kube'
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.1-debug
+    entrypoint: [ "" ]
+  script:
+    - export VERSION="${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}-solomon"
+    - export BUILD_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+    - source "${CI_PROJECT_DIR}/.shuffle/prod/.env"
+    - mkdir -p /kaniko/.shuffle
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"},\"$CI_DEPENDENCY_PROXY_SERVER\":{\"auth\":\"$(printf "%s:%s" ${CI_DEPENDENCY_PROXY_USER} "${CI_DEPENDENCY_PROXY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.shuffle/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/.docker/prod/nextjs/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_NAME}-${VERSION}" 
+      --build-arg NODE_VERSION=${NODE_VERSION}
+      --build-arg MEDUNES_VERSION=${VERSION}
+      --build-arg MEDUNES_BUILD_TIME="${BUILD_TIME}"
+      --build-arg PLATFORM_ENVIRONMENT=solomon
+      --build-arg GITLAB_PACKAGE_TOKEN=${GITLAB_PACKAGE_TOKEN}
+      --force
+  only:
+    - tags
+    - staging
+    - /.*-build/ # branch-name-build, suffixing the branch name with -build means we want to build an image for it (feature branch)
+
+####### [[ INTERNAL -DEPLOY (REMIX) ]] ###############
+deploy-job:
+  image: alpine:3.14
+  tags:
+    - preprod
+  stage: deploy
+  only:
+    - tags
+    - staging
+    - /.*-build/ # branch-name-build, suffixing the branch name with -build means we want to build an image for it (feature branch)
+  before_script:
+    - apt update
+    - apt install -y --no-install-recommends jq
+  script:
+    - export VERSION="${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}-solomon"
+    - echo "deploy with remix to solomon.."
+    - PAYLOAD="{\"project\":\"$CI_PROJECT_NAME\",\"job\":\"$CI_JOB_ID\",\"pipeline\":\"$CI_PIPELINE_ID\",\"token\":\"$REMIX_AUTH\",\"version\":\"${VERSION}\"}"
+    - echo $PAYLOAD
+    - response=$(curl -k -d $PAYLOAD $REMIX_API)
+    - message=$(echo $response | jq -c -r '.message')
+    - error=$(echo $response | jq -c -r '.error')
+    - if error="false"; then echo "Successfully deployed $CI_PROJECT_NAME version $VERSION to solomon"; else echo $message && exit 1; fi
