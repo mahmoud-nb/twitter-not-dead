@@ -6,7 +6,7 @@ export const Posts = async ({ messages }: { messages?: Record<string, string>, }
   const posts = await getLatetestPosts()
   const user = await getCurrentUser()
 
-  if (!user) throw new Error('User is undefined')
+  //if (!user) throw new Error('User is undefined')
 
   return (
     <div>

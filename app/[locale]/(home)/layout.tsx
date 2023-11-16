@@ -8,7 +8,7 @@ import { Footer } from '@/src/components/layout/Footer'
 import { locales, defaultLocale } from '@/middleware'
 import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
 import Globals from '@/config/globals'
-import '../globals.css'
+import '../../globals.css'
 import { getCurrentUser } from '@/src/query/user.query'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,7 +30,8 @@ export default async function RootLayout({
   if (!isValidLocale) notFound();
 
   const user = await getCurrentUser()
-  //if (!user) redirect('/login')
+  console.log('USER', user)
+  if (!user) redirect('/login')
 
   return (
     <html lang={locale || defaultLocale} className="h-full" >
