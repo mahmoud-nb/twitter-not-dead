@@ -13,6 +13,10 @@
   "Page": {
     "Home": {
       "title": "Accueil"
+    },
+    "User": {
+      "follow": "Suivre",
+      "followedBy": "Suivi par"
     }
   },
   "Tweet": {

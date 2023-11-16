@@ -59,6 +59,7 @@ export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, u
           likes: true
         }
       },
+      /*
       posts: {
         select: {
           ...postQuerySelect(id)
@@ -68,6 +69,7 @@ export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, u
           createdAt: 'desc'
         }
       },
+      */
       followeds: {
         select: {
           follower:{
@@ -81,7 +83,7 @@ export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, u
             }
           }
         },
-        take: 5,
+        take: 3,
         orderBy: {
           createdAt: 'desc'
         }
