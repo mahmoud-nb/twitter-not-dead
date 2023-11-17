@@ -15,10 +15,11 @@ type PostCardActionsProps = {
   userId: string
   isLiked?: Boolean
   isReposted?: Boolean
+  isAnswered?: Boolean
   className?: string
 }
 
-export const PostCardActions = ({ post, userId, isLiked, isReposted, className } : PostCardActionsProps) => {
+export const PostCardActions = ({ post, userId, isLiked, isReposted, isAnswered, className } : PostCardActionsProps) => {
 
   const iconSize = 18
   const iconStrokeWidth = 2
@@ -47,9 +48,9 @@ export const PostCardActions = ({ post, userId, isLiked, isReposted, className }
 
   return (
     <div className={className}>
-      <Button size="icon" variant="ghost">
+      <Button size="icon" variant="ghost" className={clsx({ 'text-cyan-400': isAnswered })}>
         <MessageCircle strokeWidth={iconStrokeWidth} size={iconSize} /> 
-        <span className="text-muted-foreground text-sm ml-2">{post._count.replies}</span>
+        <span className={clsx('text-muted-foreground text-sm ml-2', {'text-cyan-400': isAnswered})}>{post._count.replies}</span>
       </Button>
       <Button size="icon" variant="ghost" onClick={onRepostClick} className={clsx({ 'text-green-500': isReposted })}>
         {isRepostPending ? <Loader size={iconSize} /> : <Repeat2 strokeWidth={iconStrokeWidth} size={iconSize} />}

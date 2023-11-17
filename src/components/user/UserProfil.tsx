@@ -17,14 +17,14 @@ export const UserProfil = async ({ username, messages }: { username:string, mess
 
   return (
     <div>
-      <div className="h-32 bg-slate-100 relative mb-14">
+      <div className="h-32 bg-slate-100 relative">
         <UserAvatar user={user} className="w-24 h-24 border-spacing-3 border-white absolute left-8 -bottom-12" />
-        <div  className="px-2 py-4 absolute right-0 -bottom-12" >
-          <Button>{messages?.follow}</Button>
-        </div>
+      </div>
+      <div  className="flex items-center justify-end p-2 mb-3" >
+        <Button className="rounded-full">{messages?.follow}</Button>
       </div>
       <div className="flex flex-col flex-auto gap-0.5 p-4">
-        <div className="text-sm font-bold">{user.name} {user.lastname}</div>
+        <div className="text-xl font-bold">{user.name} {user.lastname}</div>
         <div className="text-sm font-light text-gray-500">{`@${user.username}`}</div>
       </div>
       <div className="flex flex-col gap-2 mb-3">

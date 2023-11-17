@@ -34,6 +34,7 @@ export const PostCard = async ({ post, userId, messages, layout = 'default' }: P
           userId={userId} 
           isLiked={postElement.likes.length > 0} 
           isReposted={postElement.reposts && postElement.reposts.length > 0}
+          isAnswered={postElement.replies && postElement.replies.length > 0}
           className="flex items-center gap-6 mt-2" />
       </div>
     )
