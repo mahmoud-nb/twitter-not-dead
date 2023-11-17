@@ -7,7 +7,7 @@ import { Loader } from '@/src/components/ui/loader'
 import { LogIn } from 'lucide-react'
 
 export default function LoginButton({ messages }: { messages?: Record<string, string> }) {
-    const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition()
   return (
     <Button onClick={() => {
         startTransition(() => signIn())

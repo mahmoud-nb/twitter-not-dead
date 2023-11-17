@@ -33,11 +33,11 @@ export default async function AuthLayout({
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
-          <div className="flex h-full max-w-6xl py-10 relative sm:py-0">
-            <main className="flex-1 sm:pl-20 md:pl-72">
+          <div className="flex h-full py-10 relative sm:py-0">
+            <main className="flex-1">
               <Header />
-              <div className="flex min-h-full">
-                <div className="max-w-xl w-full border-r border-blue-50 dark:border-gray-700">
+              <div className="flex min-h-full p-10">
+                <div className="max-w-5xl w-full mx-auto p-6 border rounded-md border-blue-50 dark:border-gray-700">
                   {children}
                 </div>
               </div>

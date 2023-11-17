@@ -14,9 +14,11 @@ export const authOptions: AuthOptions = {
         return {
           id: profile?.id.toString() || "",
           username: profile.login,
-          name: profile.email,
-          email: profile.login,
+          name: profile.name,
+          lastname: profile.lastname,
+          email: profile.email,
           image: profile.avatar_url,
+          bio: profile.bio
         }
       }
     }),

@@ -1,21 +1,23 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { notFound, redirect } from 'next/navigation'
-import clsx from 'clsx'
 import { Aside } from '@/src/components/layout/Aside'
 import { Header } from '@/src/components/layout/Header'
 import { Footer } from '@/src/components/layout/Footer'
 import { locales, defaultLocale } from '@/middleware'
 import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
-import Globals from '@/config/globals'
-import '../../globals.css'
 import { getCurrentUser } from '@/src/query/user.query'
+import clsx from 'clsx'
+import Globals from '@/config/globals'
+import Favicon from '/public/images/twitter.ico'
+import '../../globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: Globals.meta.title,
   description: Globals.meta.description,
+  icons: [{ rel: 'icon', url: Favicon.src }],
 }
 
 export default async function RootLayout({
@@ -30,7 +32,6 @@ export default async function RootLayout({
   if (!isValidLocale) notFound();
 
   const user = await getCurrentUser()
-  console.log('USER', user)
   if (!user) redirect('/login')
 
   return (

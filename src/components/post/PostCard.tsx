@@ -1,12 +1,10 @@
 import Link from 'next/link'
 import { PostCardLayout } from './PostCardLayout'
-import { PostData, PostHome, isLikedPost } from '@/src/query/post.query'
+import { PostData, PostHome } from '@/src/query/post.query'
 import { PostMainCardLayout } from './PostMainCardLayout'
 import dayjs from 'dayjs'
-import { User } from '@/src/query/user.query'
 import { PostCardActions } from './PostCardActions'
 import { Repeat2 } from 'lucide-react'
-import { getAuthSession } from '@/lib/auth'
 
 type PostCardProps = {
   post: PostHome | PostData
@@ -17,11 +15,7 @@ type PostCardProps = {
 
 export const PostCard = async ({ post, userId, messages, layout = 'default' }: PostCardProps) => {
 
-  const session = await getAuthSession()
-
   if (!post) throw new Error('Post is not defined')
-  
-  const isLikedByCurrentUser = await isLikedPost(post.id, userId)
 
   const postCardSection = (postElement: PostHome) => { 
 
@@ -35,7 +29,12 @@ export const PostCard = async ({ post, userId, messages, layout = 'default' }: P
         </Link>
         { layout === 'main' && (<div className="text-sm text-muted-foreground mt-2">
           {dayjs(postElement.createdAt).format('HH:mm A · DD-MM-YYYY ')}</div>)}
-        <PostCardActions post={postElement} isLiked={!!isLikedByCurrentUser} className="flex items-center gap-6 mt-2" />
+        <PostCardActions 
+          post={postElement} 
+          userId={userId} 
+          isLiked={postElement.likes.length > 0} 
+          isReposted={postElement.reposts && postElement.reposts.length > 0}
+          className="flex items-center gap-6 mt-2" />
       </div>
     )
   }
