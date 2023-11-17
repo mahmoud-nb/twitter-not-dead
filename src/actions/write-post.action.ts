@@ -59,3 +59,15 @@ export const toggleLike = async (postId:string, isLiked:Boolean = false) => {
 
   throw new Error('You must be authenticated')
 }
+
+export const doRepost = async (postId:string, userId:string) => {
+  const post = await prisma.post.create({
+    data: {
+      content: '',
+      originalId: postId,
+      userId,
+    }
+  }) 
+
+  return post.id
+}

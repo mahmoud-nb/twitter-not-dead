@@ -107,7 +107,7 @@ export const getLatetestPosts = (userId?: string) =>
     where: {
       parentId: null
     },
-    take: 5,
+    take: 20,
     orderBy: {
       createdAt: 'desc'
     },
@@ -163,8 +163,6 @@ export type Post = {
   parentId: String, 
   originalId: String
 }
-
-
 
 export type PostHome = Prisma.PromiseReturnType<typeof getLatetestPosts>[number]
 export type PostData = Prisma.PromiseReturnType<typeof getPostById>

@@ -30,7 +30,6 @@ export default async function RootLayout({
   if (!isValidLocale) notFound();
 
   const user = await getCurrentUser()
-  console.log('USER', user)
   if (!user) redirect('/login')
 
   return (
