@@ -11,6 +11,7 @@ import clsx from 'clsx'
 import Globals from '@/config/globals'
 import Favicon from '/public/images/twitter.ico'
 import '../../globals.css'
+import { CurrentUserProvider } from '@/src/contexts/CurrentUserProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
   return (
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
+        <CurrentUserProvider user={user}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
           <div className="flex h-full max-w-6xl py-10 relative sm:py-0">
             <Aside />
@@ -51,6 +53,7 @@ export default async function RootLayout({
             </main>
           </div>
         </ThemeProvider>
+        </CurrentUserProvider>
       </body>
     </html>
   )

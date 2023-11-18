@@ -26,7 +26,7 @@ export const Navbar = ({ user, className }: { user?: UserType | null, className:
         </div>
       </Link>
 
-      <Link href="/write" className={clsx(buttonVariants({ variant: "ghost" }), 'w-full')}>
+      <Link href="/tweet" className={clsx(buttonVariants({ variant: "ghost" }), 'w-full')}>
         <div className={linkCommonStyle}>
           <PenSquare strokeWidth={iconStrokeWidth} size={iconSize} />
           <span className="hidden text-lg md:block">{t('Tweet')}</span>

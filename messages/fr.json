@@ -1,7 +1,5 @@
 {
   "Common": {
-    "Login": "Login",
-    "Logout": "Logout",
     "Tweet": "Tweet"
   },
   "Navbar": {
@@ -11,12 +9,24 @@
     "Profil": "Profil"
   },
   "Page": {
+    "Auth": {
+      "Titre": "Ça se passe maintenant",
+      "Register": "S'inscrire",
+      "SignIn": "Connexion",
+      "SignOut": "Se déconnecter",
+      "hasAccountTitle": "Vous avez déjà un compte ?"
+    },
     "Home": {
       "title": "Accueil"
     },
     "User": {
       "follow": "Suivre",
-      "followedBy": "Suivi par"
+      "followedBy": "Suivi par",
+      "subscriber": "Abonné",
+      "subscribers": "Abonnés",
+      "subscription": "abonnement",
+      "subscriptions": "abonnements",
+      "unsubscribe": "Se désabonner"
     }
   },
   "Tweet": {

@@ -27,21 +27,17 @@ export default async function AuthLayout({
   const isValidLocale = locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound();
 
-
-
   return (
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem >
           <div className="flex h-full py-10 relative sm:py-0">
             <main className="flex-1">
-              <Header />
               <div className="flex min-h-full p-10">
                 <div className="max-w-5xl w-full mx-auto p-6 border rounded-md border-blue-50 dark:border-gray-700">
                   {children}
                 </div>
               </div>
-              <Footer />
             </main>
           </div>
         </ThemeProvider>
