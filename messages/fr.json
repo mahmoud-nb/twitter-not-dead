@@ -16,7 +16,12 @@
     },
     "User": {
       "follow": "Suivre",
-      "followedBy": "Suivi par"
+      "followedBy": "Suivi par",
+      "subscriber": "Abonné",
+      "subscribers": "Abonnés",
+      "subscription": "abonnement",
+      "subscriptions": "abonnements",
+      "unsubscribe": "se désabonner"
     }
   },
   "Tweet": {

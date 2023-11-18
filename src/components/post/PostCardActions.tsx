@@ -48,17 +48,17 @@ export const PostCardActions = ({ post, userId, isLiked, isReposted, isAnswered,
 
   return (
     <div className={className}>
-      <Button size="icon" variant="ghost" className={clsx({ 'text-cyan-400': isAnswered })}>
+      <Button size="icon" variant="net" className={clsx({ 'text-sky-400': isAnswered })}>
         <MessageCircle strokeWidth={iconStrokeWidth} size={iconSize} /> 
-        <span className={clsx('text-muted-foreground text-sm ml-2', {'text-cyan-400': isAnswered})}>{post._count.replies}</span>
+        <span className={clsx('text-sm ml-2', {'text-sky-400': isAnswered})}>{post._count.replies}</span>
       </Button>
-      <Button size="icon" variant="ghost" onClick={onRepostClick} className={clsx({ 'text-green-500': isReposted })}>
+      <Button size="icon" variant="net" onClick={onRepostClick} className={clsx({ 'text-green-500': isReposted })}>
         {isRepostPending ? <Loader size={iconSize} /> : <Repeat2 strokeWidth={iconStrokeWidth} size={iconSize} />}
-        <span className={clsx('text-muted-foreground text-sm ml-2', {'text-green-500': isReposted})}>{post._count.reposts}</span>
+        <span className={clsx('text-sm ml-2', {'text-green-500': isReposted})}>{post._count.reposts}</span>
       </Button>
-      <Button size="icon" variant="ghost" onClick={onLikeClick} className={clsx({ 'text-red-500': isLiked })}>
-        {isLikePending ? <Loader size={iconSize} /> : <Heart strokeWidth={iconStrokeWidth} size={iconSize} />}
-        <span className={clsx('text-muted-foreground text-sm ml-2', {'text-red-500': isLiked})}>{post._count.likes}</span>
+      <Button size="icon" variant="net" onClick={onLikeClick} className={clsx({ 'text-red-500': isLiked })}>
+        {isLikePending ? <Loader size={iconSize} /> : <Heart strokeWidth={iconStrokeWidth} size={iconSize} className={clsx({ 'fill-red-500': isLiked })} />}
+        <span className={clsx('text-sm ml-2', {'text-red-500': isLiked})}>{post._count.likes}</span>
       </Button>
     </div>
   )

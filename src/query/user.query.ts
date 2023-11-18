@@ -1,7 +1,6 @@
 import { getAuthSession } from '@/lib/auth'
 import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
-import { postQuerySelect } from './post.query'
 
 const userQuery = {
     id: true,
@@ -18,40 +17,45 @@ const userQuery = {
     createdAt: true,
 } satisfies Prisma.UserSelect
 
-type FindUniqueUserQuery = {
-  id?: string;
-  username?: string;
-  email?: string;
-}
+export type FindUniqueUserWhere = Partial<Record<"id"|"username"|"email", string>>
 
-export const getUser = async ({ id, email, username }: FindUniqueUserQuery) => {
-
-  let where = null
-
-  if (id) where = { id }
-  if (email) where = { email }
-  if (username) where = { username }
+export const getUser = async (where: FindUniqueUserWhere) => {
 
   if (!where) throw new Error("User not found")
 
-  const user = await prisma.user.findUnique({ where })
+  const user = await prisma.user.findUnique({ where } as { where: Prisma.UserWhereUniqueInput })
 
   return user
 }
 
-export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, username }: FindUniqueUserQuery) => {
+export const getUserProfil = async (queryWhere: FindUniqueUserWhere) => {
 
-  let where = null
+  if (!queryWhere) throw new Error("User not found")
 
-  if (id) where = { id }
-  if (email) where = { email }
-  if (username) where = { username }
-
-  if (!where) throw new Error("User not found")
+  const where = queryWhere as Prisma.UserWhereUniqueInput
 
   const user = await prisma.user.findUnique({ 
-    select: {
-      ...userQuery,
+    include: {
+      followeds: {
+        include: {
+          //followed: true,
+          follower: true
+        },
+        take: 3,
+        orderBy: {
+          createdAt: 'desc'
+        }
+      },
+      followers: {
+        include: {
+          followed: true,
+          //follower: true
+        },
+        take: 3,
+        orderBy: {
+          createdAt: 'desc'
+        }
+      },
       _count: {
         select: {
           followeds: true,
@@ -59,35 +63,6 @@ export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, u
           likes: true
         }
       },
-      /*
-      posts: {
-        select: {
-          ...postQuerySelect(id)
-        },
-        take: 10,
-        orderBy: {
-          createdAt: 'desc'
-        }
-      },
-      */
-      followeds: {
-        select: {
-          follower:{
-            select: {
-              id: true,
-              name: true,
-              lastname: true,
-              username: true,
-              email: true,
-              image: true,
-            }
-          }
-        },
-        take: 3,
-        orderBy: {
-          createdAt: 'desc'
-        }
-      }
     },
     where 
   })
@@ -95,15 +70,19 @@ export const getUserProfil = async ({ id = "clnu86hud0000u74s5vjmttek", email, u
   return user
 }
 
-export const getCurrentUser = async () => {
-  const session = await getAuthSession()
+export const getCurrentUser = async (userId:string|null = null) => {
+  if (!userId) {
+    const session = await getAuthSession()
 
-  if (!session?.user.id) {
-    return null
-    throw new Error("User not found")
+    if (!session?.user.id) {
+      console.error("Session is expired or invalid")
+      return null
+    }
+
+    userId = session.user.id 
   }
-
-  const user = await getUser({ id: session.user.id })
+  
+  const user = await getUser({ id: userId })
 
   return user
 }

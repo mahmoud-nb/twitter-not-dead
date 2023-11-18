@@ -29,7 +29,7 @@ export const WritePostForm = ({ messages, postId } : { messages?: Record<string,
       <Input type="hidden" value=""  />
       <Textarea placeholder={messages?.contentPlaceholder} className="border-0" {...register("content")} />
       <div className="flex justify-end mt-2">
-        <Button type="submit">{messages?.buttonText}</Button>
+        <Button type="submit" className="rounded-full">{messages?.buttonText}</Button>
       </div>
     </form>
   )
