@@ -12,7 +12,7 @@ export default async function Login() {
 
 
   return (
-    <div className="flex gap-4" >
+    <div className="flex flex-col gap-4 md:flex-row" >
       <div className="flex justify-center mb-6 p-8">
         <Image src={logoSrc} alt={logoAlt} width={logoBaseSize.w*6} height={logoBaseSize.h*6} />
       </div>    

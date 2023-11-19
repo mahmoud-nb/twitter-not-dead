@@ -1,4 +1,4 @@
-import { getLatetestPosts, getPosts } from '@/src/query/post.query'
+import { getLatetestPosts } from '@/src/query/post.query'
 import { PostCard } from '@/src/components/post/PostCard'
 import { getCurrentUser } from '@/src/query/user.query'
 

@@ -36,7 +36,7 @@ export const UserProfilActions = ({ userProfilId, isFollowed = false, messages }
         isFollowed ? 
         <Button className="rounded-full" variant="outline" onClick={doUnsubscribeUser}>
           {isUnsubscribePending && <Loader size={18} className="mr-2" />}
-          {messages?.subscriber}
+          {messages?.unsubscribe}
         </Button>
         :
         <Button className="rounded-full" onClick={doFollowUser}>

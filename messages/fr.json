@@ -1,7 +1,5 @@
 {
   "Common": {
-    "Login": "Login",
-    "Logout": "Logout",
     "Tweet": "Tweet"
   },
   "Navbar": {
@@ -11,6 +9,13 @@
     "Profil": "Profil"
   },
   "Page": {
+    "Auth": {
+      "Titre": "Ça se passe maintenant",
+      "Register": "S'inscrire",
+      "SignIn": "Connexion",
+      "SignOut": "Se déconnecter",
+      "hasAccountTitle": "Vous avez déjà un compte ?"
+    },
     "Home": {
       "title": "Accueil"
     },
@@ -21,7 +26,7 @@
       "subscribers": "Abonnés",
       "subscription": "abonnement",
       "subscriptions": "abonnements",
-      "unsubscribe": "se désabonner"
+      "unsubscribe": "Se désabonner"
     }
   },
   "Tweet": {

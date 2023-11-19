@@ -1,7 +1,6 @@
 {
   "Common": {
-    "Login": "Login",
-    "Logout": "Logout"
+    "Tweet": "Tweet"
   },
   "Navbar": {
       "Home": "Home",
@@ -10,6 +9,13 @@
       "Profil": "Profil"
   },
   "Page": {
+    "Auth": {
+      "Titre": "It's happening now",
+      "Register": "Register",
+      "SignIn": "Login",
+      "SignOut": "Logout",
+      "hasAccountTitle": "Already have an account ?"
+    },
     "Home": {
       "title": "Welcome to the home page!"
     },
@@ -20,7 +26,7 @@
       "subscribers": "Subscribers",
       "subscription": "subscription",
       "subscriptions": "subscriptions",
-      "unsubscribe": "se désabonner"
+      "unsubscribe": "Unsubscribe"
     }
   },
   "Tweet": {
