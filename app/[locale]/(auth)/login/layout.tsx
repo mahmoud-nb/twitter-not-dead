@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import clsx from 'clsx'
-import { Header } from '@/src/components/layout/Header'
-import { Footer } from '@/src/components/layout/Footer'
 import { locales, defaultLocale } from '@/middleware'
 import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
+import Favicon from '/public/images/twitter.ico'
 import Globals from '@/config/globals'
 import '../../../globals.css'
 
@@ -14,6 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: Globals.meta.title,
   description: Globals.meta.description,
+  icons: [{ rel: 'icon', url: Favicon.src }],
 }
 
 export default async function AuthLayout({
