@@ -35,6 +35,9 @@ export default async function RootLayout({
   const user = await getCurrentUser()
   if (!user) redirect('/login')
 
+  console.log('USER', user)
+
+
   return (
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
