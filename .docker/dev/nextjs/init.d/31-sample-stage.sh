@@ -4,3 +4,4 @@
 printf "No special stages to be executed.."
 pwd
 ls -al
+env

@@ -7,8 +7,7 @@ default:
 ###################################
 
 variables:
-  REMIX_API: "http://rx.tn-developers.org/trigger"
-  REMIX_AUTH: deadbeef980123deadbeef980123
+  REMIX_API: "https://shuffle.tn-developers.org/trigger"
 
 stages:
   - build

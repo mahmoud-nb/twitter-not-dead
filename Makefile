@@ -8,8 +8,6 @@ DOCKER_DIR=./.docker/${ENV}
 include ./.docker/.auth
 include ${DOCKER_DIR}/.env
 
-PERSISTED_DATA_DIR=./.docker/${ENV}/data
-
 # set this env when using the make build and make login commands
 # Ex: make service=nginx login
 # Ex: make service=mysql build
@@ -21,26 +19,25 @@ refresh:
 	$(MAKE) gitlab-login
 	docker pull "${GITLAB_NAMESPACE}/medunes-node18-nextjs-${ENV}:latest"
 build:
-	mkdir -p "${PERSISTED_DATA_DIR}" && chmod -R 777 "${PERSISTED_DATA_DIR}"
+	mkdir -p "./.docker/${ENV}/data" && chmod -R 777 "./.docker/${ENV}/data"
 	$(MAKE) gitlab-login
-	MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml build --no-cache
-	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml up -d
-	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  ps;
-	#sleep 7
+	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml build --no-cache
+	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml up -d
+	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S")  ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  ps;
 	$(MAKE) logs;
 up:
-	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  up -d
+	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  up -d
 stop:
 	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml stop
 restart:
-	 ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml restart
+	 GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S")  ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml restart
 status:
 	 ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml ps
 down:
 	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  down --volumes --remove-orphans
 	${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  down --volumes --remove-orphans
 login:
-	 ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml exec  --user=1000:1000 $(service) bash
+	 GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S")  ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml exec  --user=1000:1000 $(service) bash
 log:
 	docker logs -f --since=15m $$(docker ps -f name=${COMPOSE_PROJECT_NAME}.dev --quiet)
 logs:

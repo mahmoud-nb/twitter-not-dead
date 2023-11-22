@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nextjs:
-    container_name: ${COMPOSE_PROJECT_NAME}_nextjs.prod
+    container_name: ${COMPOSE_PROJECT_NAME}.prod
     build:
       context: ../../
       dockerfile: ./.docker/prod/nextjs/Dockerfile
