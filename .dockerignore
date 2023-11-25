@@ -1,9 +1,7 @@
 /.docker/prod/*
 !/.docker/prod/nextjs/builder/*.*
 !/.docker/prod/nextjs/init.d/*.*
-!/.docker/prod/nextjs/entrypoint.sh
-!/.docker/prod/nginx/*.*
-!/.docker/prod/nginx/*.*
+!/.docker/prod/nextjs/.env
 .dockerignore
 node_modules
 CODEOWNERS
