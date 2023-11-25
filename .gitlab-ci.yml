@@ -25,9 +25,10 @@ build-job:
   script:
     - export VERSION="${CI_COMMIT_TAG:-$CI_COMMIT_REF_SLUG}-solomon"
     - export BUILD_TIME=$(date +"%Y-%m-%d %H:%M:%S")
-    - source "${CI_PROJECT_DIR}/.shuffle/prod/.env"
-    - mkdir -p /kaniko/.shuffle
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"},\"$CI_DEPENDENCY_PROXY_SERVER\":{\"auth\":\"$(printf "%s:%s" ${CI_DEPENDENCY_PROXY_USER} "${CI_DEPENDENCY_PROXY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.shuffle/config.json
+    - source "${CI_PROJECT_DIR}/.docker/prod/.env"
+    - echo ${DATABASE_PASS_STORED}
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"},\"$CI_DEPENDENCY_PROXY_SERVER\":{\"auth\":\"$(printf "%s:%s" ${CI_DEPENDENCY_PROXY_USER} "${CI_DEPENDENCY_PROXY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
     - >-
       /kaniko/executor
       --context "${CI_PROJECT_DIR}"
