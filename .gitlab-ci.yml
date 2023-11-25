@@ -39,6 +39,10 @@ build-job:
       --build-arg MEDUNES_BUILD_TIME="${BUILD_TIME}"
       --build-arg PLATFORM_ENVIRONMENT=solomon
       --build-arg GITLAB_PACKAGE_TOKEN=${GITLAB_PACKAGE_TOKEN}
+      --build-arg GITHUB_ID=${GITHUB_ID}
+      --build-arg GITHUB_SECRET=${GITHUB_SECRET}
+      --build-arg NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+
       --force
   only:
     - tags
