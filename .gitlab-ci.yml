@@ -52,7 +52,6 @@ deploy-job:
   stage: deploy
   only:
     - tags
-    - staging
     - /.*-build/ # branch-name-build, suffixing the branch name with -build means we want to build an image for it (feature branch)
   before_script:
     - apt update

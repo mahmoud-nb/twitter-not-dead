@@ -21,9 +21,9 @@ refresh:
 build:
 	mkdir -p "./.docker/${ENV}/data" && chmod -R 777 "./.docker/${ENV}/data"
 	$(MAKE) gitlab-login
-	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml build --no-cache
-	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml up -d
-	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S")  ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  ps;
+	NEXTAUTH_SECRET="${NEXTAUTH_SECRET}" GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml build --no-cache
+	NEXTAUTH_SECRET="${NEXTAUTH_SECRET}" GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml up -d
+	NEXTAUTH_SECRET="${NEXTAUTH_SECRET}" GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S")  ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  ps;
 	$(MAKE) logs;
 up:
 	GITHUB_ID="${GITHUB_ID}" GITHUB_SECRET="${GITHUB_SECRET}" MEDUNES_BUILD_TIME=$$(date +"%Y-%m-%d %H:%M:%S") ${COMPOSE_COMMAND} --env-file=${DOCKER_DIR}/.env -f ${DOCKER_DIR}/docker-compose.yml  up -d

@@ -10,7 +10,6 @@ ARG GITHUB_ID
 ARG GITHUB_SECRET
 ARG NEXTAUTH_SECRET
 
-
 COPY ./ /app
 COPY ./.docker/prod/nextjs/builder/build.sh /build.sh
 

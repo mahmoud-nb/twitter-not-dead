@@ -1,7 +1,7 @@
-# Gitlab user: username@medunes.net
 GITLAB_USER=solva
 
 # Gitlab token with container read permission (NO NEED FOR MORE THAN read_registry)
 GITLAB_TOKEN=__GITLAB_TOKEN__
-GITHUB_ID="__GITHUB_ID__"
-GITHUB_SECRET="__GITHUB_SECRET__"
+GITHUB_ID=__GITHUB_ID__
+GITHUB_SECRET=__GITHUB_SECRET__
+NEXTAUTH_SECRET=__NEXTAUTH_SECRET__

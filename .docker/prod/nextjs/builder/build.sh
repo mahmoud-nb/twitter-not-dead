@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
 ######## BUILD ARGUMENTS###########
 #>>>> PLATFORM_ENVIRONMENT
 #>>>> MEDUNES_VERSION
@@ -28,7 +35,10 @@ parseEnv() {
 
 installApplication() {
   cd /app
+  printf "Installing dependencies..}\n"
   corepack yarn install
+
+  printf "Building the application..\n"
   corepack yarn run build
 }
 
