@@ -13,6 +13,7 @@ const moduleExports = {
         includePaths: [path.join(__dirname, 'styles')],
     },
     reactStrictMode: false,
+    images: { unoptimized: true},
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
