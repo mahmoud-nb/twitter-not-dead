@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prisma:seed": "prisma db seed",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "build:vercel": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -30,12 +30,12 @@
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "lucide-react": "^0.287.0",
-    "next": "13.5.5",
+    "next": "^14.0.3",
     "next-auth": "^4.23.2",
     "next-intl": "^3.0.0-beta.19",
     "next-themes": "^0.2.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
