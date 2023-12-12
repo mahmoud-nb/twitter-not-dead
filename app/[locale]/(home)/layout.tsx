@@ -12,6 +12,7 @@ import Globals from '@/config/globals'
 import Favicon from '/public/images/twitter.ico'
 import '../../globals.css'
 import { CurrentUserProvider } from '@/src/contexts/CurrentUserProvider'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -54,6 +55,7 @@ export default async function RootLayout({
           </div>
         </ThemeProvider>
         </CurrentUserProvider>
+        <Analytics />
       </body>
     </html>
   )

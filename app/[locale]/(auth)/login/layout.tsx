@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import clsx from 'clsx'
 import { locales, defaultLocale } from '@/middleware'
 import { ThemeProvider } from '@/src/components/theme/ThemeProvider'
+import { Analytics } from '@vercel/analytics/react'
 import Favicon from '/public/images/twitter.ico'
 import Globals from '@/config/globals'
 import '../../../globals.css'
@@ -41,6 +42,7 @@ export default async function AuthLayout({
             </main>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
