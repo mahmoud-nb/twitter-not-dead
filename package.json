@@ -40,7 +40,7 @@
     "dayjs": "^1.11.10",
     "dotenv": "^10.0.0",
     "lucide-react": "^0.287.0",
-    "next": "^14.0.3",
+    "next": "latest",
     "next-auth": "^4.24.5",
     "next-intl": "^3.0.0-beta.19",
     "next-themes": "^0.2.1",
@@ -50,7 +50,6 @@
     "sharp": "^0.32.6",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "ts-node": "^10.4.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
