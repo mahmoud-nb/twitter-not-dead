@@ -12,6 +12,7 @@ import Globals from '@/config/globals'
 import Favicon from '/public/images/twitter.ico'
 import '../../globals.css'
 import { CurrentUserProvider } from '@/src/contexts/CurrentUserProvider'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,9 +36,6 @@ export default async function RootLayout({
   const user = await getCurrentUser()
   if (!user) redirect('/login')
 
-  console.log('USER', user)
-
-
   return (
     <html lang={locale || defaultLocale} className="h-full" >
       <body className={clsx(inter.className, 'h-full bg-background')}>
@@ -57,6 +55,7 @@ export default async function RootLayout({
           </div>
         </ThemeProvider>
         </CurrentUserProvider>
+        <Analytics />
       </body>
     </html>
   )
